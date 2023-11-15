@@ -1,10 +1,13 @@
+import ItemListContainer from './Componentes/ItemListContainer/ItemListContainer'
 import './App.css'
+import NavBar from './Componentes/NavBar/NavBar'
 
 function App() {
   return (
-    <>
-      <h1>hola</h1>
-    </>
+    <div>
+      <NavBar/>
+      <ItemListContainer greeting='Bienvenidos a KPOPIES!'/>
+    </div>
   )
 }
 
