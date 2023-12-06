@@ -1,20 +1,21 @@
 import CartWidget from "../CartWidget/CartWidget";
 import logo from '../../assets/kpopies-logo.png'
+import { Link } from 'react-router-dom'
 
 function NavBar() {
   return (
     <div className="container-fluid">
       <nav className="row row-cols-3">
         <div className="logo col">
-           <a href="">
+           <Link to="/">
              <img src={logo} alt="logo" />
-           </a> 
+           </Link> 
         </div>
         <div className="col">
           <ul className="nav-menu">
-                <li><a href="">SKZ</a></li>
-                <li><a href="">BTS</a></li>
-                <li><a href="">TXT</a></li>
+                <li><Link to="/category/skz">SKZ</Link></li>
+                <li><Link to="/category/bts">BTS</Link></li>
+                <li><Link to="/category/txt">TXT</Link></li>
             </ul>
         </div>
         <div className="col">
