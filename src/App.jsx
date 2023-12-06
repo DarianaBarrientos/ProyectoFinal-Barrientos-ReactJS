@@ -18,7 +18,7 @@ function App() {
         <Route path={'/category/:id'} element={<ItemListContainer/>}/>
         <Route path={'/item/:id'} element={<ItemDetailContainer/>}/>
         <Route path={'/cart'} element={<CartWidget/>}/>
-        <Route path={'/error'} element={<Error/>}/>
+        <Route path={'*'} element={<Error/>}/>
 
       </Routes>
       </BrowserRouter>
