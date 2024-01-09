@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import productos from '../Json/productos.json'
+import { getFirestore, collection, getDocs, where, query } from 'firebase/firestore';
 import ItemList from '../ItemList/ItemList';
 
 // eslint-disable-next-line react/prop-types
@@ -10,19 +10,20 @@ const ItemListContainer = () => {
   const {id} = useParams();
 
   useEffect(()=> {
-    const fetchData = async()=>{
-      try{
-        const data = await new Promise ((resolve)=>{
-          setTimeout(()=>{
-            resolve(id ? productos.filter(item => item.category === id) : productos)
-          }, 1500);
-        });
-        setItem(data);
-      }catch(error){
-        console.log('error:', error);
-      }
-    };
-    fetchData();
+    const queryDb = getFirestore();
+    const queryCollection = collection(queryDb, 'products');
+
+    if(id){
+      const queryFilter = query(queryCollection, where('category', '==', id));
+      getDocs(queryFilter).then((data)=>
+      setItem(data.docs.map((p)=> ({id: p.id, ...p.data()})))
+      );
+    } else {
+      getDocs(queryCollection).then((data)=>
+      setItem(data.docs.map((p)=> ({id: p.id, ...p.data()})))
+      );
+    }
+
   }, [id]) 
 
   return (

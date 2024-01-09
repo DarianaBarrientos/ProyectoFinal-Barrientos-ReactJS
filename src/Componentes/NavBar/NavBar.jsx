@@ -1,5 +1,5 @@
 import CartWidget from "../CartWidget/CartWidget";
-import logo from '../../assets/kpopies-logo.png'
+import logo from '../../assets/kpopies-logo.png';
 import { Link } from 'react-router-dom'
 
 function NavBar() {
