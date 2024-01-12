@@ -1,4 +1,4 @@
-import errorImg from '../../../public/img/error-img.png'
+import errorImg from '../../assets/img/error-img.png'
 
 const Error = () => {
   return (
