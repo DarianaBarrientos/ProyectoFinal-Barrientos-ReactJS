@@ -10,6 +10,7 @@ const ItemListContainer = () => {
   const {id} = useParams();
 
   useEffect(()=> {
+    
     const queryDb = getFirestore();
     const queryCollection = collection(queryDb, 'products');
 
@@ -28,7 +29,7 @@ const ItemListContainer = () => {
 
   return (
     <div>
-      <h1 className='bienvenida'>Bienvenidos!</h1>
+      <h1 className='bienvenida'>KPOPIES</h1>
       <div>
         
           <ItemList item={item}/>

@@ -7,6 +7,7 @@ import Error from './Componentes/Error/Error';
 import CartProvider from './Componentes/CartContext/CartContext';
 import Cart from './Componentes/Cart/Cart'
 import CheckOut from './Componentes/CheckOut/CheckOut';
+import LoaderComponent from './Componentes/LoaderComponent/LoaderComponent';
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
       <BrowserRouter>
       <CartProvider>
       <NavBar/>
-
+      <LoaderComponent/>
       <Routes>
 
         <Route path={'/'} element={<ItemListContainer/>}/>

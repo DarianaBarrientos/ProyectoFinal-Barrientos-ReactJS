@@ -69,6 +69,7 @@ nav {
     flex-wrap: wrap;
     justify-content:space-evenly;
     align-content: space-evenly;
+    
 }
 
 .item-decoration-home {
@@ -77,6 +78,11 @@ nav {
     text-align: center;
     width: 400px;
     margin: 3rem;
+}
+
+.item-decoration-home:hover {
+    box-shadow: 0px 0px 15px 1px rgba(225, 225, 225, 0.887);
+    transition: 0.5s;
 }
 
 .item-decoration-home p{
@@ -124,4 +130,10 @@ nav {
 
 .error-img img{
     width: 1000px;
+}
+
+.spinner {
+    text-align: center;
+    color: #2761a3;
+    margin: 20px;
 }
