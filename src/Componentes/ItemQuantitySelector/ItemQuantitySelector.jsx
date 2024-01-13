@@ -17,12 +17,12 @@ const ItemQuantitySelector = ({stock, initial, onAdd}) => {
 
   return (
     <div>
-        <button disabled={count <= 1} onClick={decrease}>-</button>
+        <button className='botonContador' disabled={count <= 1} onClick={decrease}>-</button>
         <span>{count}</span>
-        <button disabled={count >= stock} onClick={increase}>+</button>
+        <button className='botonContador' disabled={count >= stock} onClick={increase}>+</button>
 
         <div>
-            <button disabled={stock <= 0} onClick={() => onAdd(count)}>Agregar compra</button>
+            <button className='boton-agregar-compra' disabled={stock <= 0} onClick={() => onAdd(count)}>Agregar compra</button>
         </div>
 
     </div>

@@ -24,9 +24,9 @@ const ItemDetail = ({item}) => {
         <small>stock: {item.stock}</small>
       </div>
 
-      <div>
-        {goToCart ? <Link to='/cart'>Terminar compra</Link> : <ItemQuantitySelector stock={item.stock} initial={1} onAdd={onAdd}/>} <br />
-        {goToCart && <Link to='/'>seguir compra</Link>}
+      <div className="detail-redirecciones">
+        {goToCart ? <Link to='/cart' className="detail-terminar-compra">Terminar compra →</Link> : <ItemQuantitySelector stock={item.stock} initial={1} onAdd={onAdd}/>} <br />
+        {goToCart && <Link to='/' className="detail-seguir-compra">← Ver más productos</Link>}
       </div>
     </div>
   )

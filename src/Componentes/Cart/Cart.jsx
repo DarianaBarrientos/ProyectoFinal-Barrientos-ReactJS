@@ -8,20 +8,24 @@ const Cart = () => {
 
     if (cart.length === 0) {
         return (
-            <div>
-                <p>Todavía no hay productos en tu carrito</p>
-                <Link to= '/'>Hacer una compra</Link>
+            <div className="cartVacio">
+                <p>Todavía no hay productos en tu carrito!</p>
+                <Link to= '/' className="cartVacio-link">→ Realizar una compra ←</Link>
             </div>
         );
     }
 
   return (
     <div>
+        <p className="cart">Tu carrito:</p>
+
         {cart.map((product) => ( <ItemCart key={product.id} product={product}/>))}
 
-        <p>Total: ${totalPrice()}</p>
+        <div className="total">
+            <p>Total: ${totalPrice()}</p>
 
-        <Link to='/checkout'>{''} <button>Finalizar compra</button></Link>
+            <Link to='/checkout'>{''} <button className="finalizar-compra">Finalizar compra</button></Link>
+        </div>    
     </div>
   );
 }

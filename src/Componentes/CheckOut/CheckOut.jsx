@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useCartContext } from "../CartContext/CartContext";
 import { getFirestore, collection, addDoc, updateDoc, doc, getDoc } from "firebase/firestore";
 import { Link } from "react-router-dom";
+import sticker from "../../assets/img/sticker-orden.jpeg"
 
 const CheckOut = () => {
 
@@ -20,12 +21,17 @@ const CheckOut = () => {
     
 
     if (!name || !surname || !email || !emailConfirmation || !phone) {
-        setError('Es obligatorio completar todos los campos!');
+        setError('→ Es obligatorio completar todos los campos!');
         return;
     }
 
     if (email !== emailConfirmation) {
-        setError('Los emails no coinciden');
+        setError('→ Los emails no coinciden!');
+        return;
+    }
+
+    if (phone.length < 10 || phone.length > 10) {
+        setError('→ Tu teléfono debe tener 10 dígitos!');
         return;
     }
 
@@ -72,7 +78,7 @@ const CheckOut = () => {
         });
     })
     .catch((error) => {
-        setError('No actualizó la orden', error);
+        setError('Hay un problema con tu pedido', error);
     });
 
     setName('');
@@ -85,60 +91,64 @@ const CheckOut = () => {
 
     if(orderId) {
         return (
-            <div>
-                <p>Gracias por comprar. Puedes hacerle seguimiento a tu compra con el siguiente numero: {orderId}</p>
-                <Link to='/'>volver al menú principal</Link>
+            <div className="ordenId">
+                <img className="sticker" src={sticker} alt="sticker"></img>
+                <p>Gracias por tu compra! Puedes hacerle seguimiento con el siguiente ID: <span className="ordenId-span">{orderId}</span></p>
+                <Link className="orden-volver-menu" to='/'>Volver al menú principal</Link>
             </div>
         )
     }
 
   return (
-    <div>
-        <h3>formulario de compra</h3>
+    <div className="checkout">
+        <h3 className="formulario-titulo">Pedido</h3>
 
-        {cart.map((product) => (
-                <div key = {product.id}>
+        <div className="items-checkout-container">
+            {cart.map((product) => (
+                    <div className="items-checkout" key = {product.id}>
 
-                    <p>producto: {product.name}</p>
-                    <p>cantidad: {product.quantity}</p>
-                    <p>precio: {totalPrice()}</p>
+                        <p>Producto: {product.name}</p>
+                        <p>Cantidad: {product.quantity}</p>
 
-                </div>
-            ))}
+                    </div>
+                ))}
+            <p className="precio-total-checkout">Total: {totalPrice()}</p>
+        </div>
+        
+        <h3 className="formulario-titulo-dos">Formulario de compra</h3>
 
-
-        <form onSubmit={formManipulation}>
+        <form className="form-container" onSubmit={formManipulation}>
 
             
-            <div>
+            <div className="form-container">
                 <label>Nombre:</label>
-                <input type="text" placeholder="ingesa nombre" value={name} onChange={(e) => setName(e.target.value)} />
+                <input className="form-input" type="text" placeholder="ingresa tu nombre" value={name} onChange={(e) => setName(e.target.value)} />
             </div>
 
-            <div>
+            <div className="form-container">
                 <label>Apellido:</label>
-                <input type="text" value={surname} onChange={(e) => setSurname(e.target.value)} />
+                <input className="form-input" type="text" placeholder="ingresa tu apellido" value={surname} onChange={(e) => setSurname(e.target.value)} />
             </div>
 
-            <div>
+            <div className="form-container">
                 <label>Email:</label>
-                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                <input className="form-input" type="email" placeholder="ingresa tu email" value={email} onChange={(e) => setEmail(e.target.value)} />
             </div>
 
-            <div>
+            <div className="form-container">
                 <label>Confirmar email:</label>
-                <input type="email" value={emailConfirmation} onChange={(e) => setEmailConfirmation(e.target.value)} />
+                <input className="form-input" type="email" placeholder="confirma tu email" value={emailConfirmation} onChange={(e) => setEmailConfirmation(e.target.value)} />
             </div>
 
-            <div>
+            <div className="form-container">
                 <label>Teléfono:</label>
-                <input type="number" value={phone} onChange={(e) => setPhone(e.target.value)} />
+                <input className="form-input" type="number" placeholder="ingresa tu teléfono ej: 1167449836" value={phone} onChange={(e) => setPhone(e.target.value)} />
             </div>
 
-            {error && <p>{error}</p>}
+            {error && <p className="error-checkout">{error}</p>}
 
-            <div>
-                <button type="submit">Finalizar</button>
+            <div className="boton-checkout">
+                <button className="boton-checkout-style" type="submit">Finalizar</button>
             </div>
 
         </form>
