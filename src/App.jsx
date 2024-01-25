@@ -8,6 +8,7 @@ import CartProvider from './Componentes/CartContext/CartContext';
 import Cart from './Componentes/Cart/Cart'
 import CheckOut from './Componentes/CheckOut/CheckOut';
 import LoaderComponent from './Componentes/LoaderComponent/LoaderComponent';
+import Footer from './Componentes/Footer/Footer';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path={'*'} element={<Error/>}/>
 
       </Routes>
+      <Footer/>
       </CartProvider>
       </BrowserRouter>
     </div>
